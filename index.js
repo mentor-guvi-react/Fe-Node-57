@@ -2,7 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { connectDb } = require('./db');
-const { registrationModel, BookingModel } = require('./Schema');
+const { registrationModel, BookingModel, HotelModel } = require('./Schema');
+
+const { ObjectId } = require('mongoose')
 
 connectDb()
 
@@ -100,6 +102,24 @@ app.post('/cancelBooking', async (req, res) => {
     else {
         res.send('error');
     }
+})
+
+
+app.get('/fetchHotels', async (req, res) => {
+
+    const { location } = req.query;
+
+    console.log(location, ' location');
+
+    try {
+        const response = await HotelModel.find({
+            _id: ('664b6eb4d38a3ffdc14dd78b')
+        });
+        res.send(response[0][location])
+    } catch (error) {
+        console.log(error, 'error response');
+    }
+
 })
 
 

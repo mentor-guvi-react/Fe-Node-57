@@ -22,8 +22,15 @@ const BookingSchema = new Schema({
     isCancelled: { type: Boolean, default: false }
 })
 
+const HotelSchema = new Schema({
+    chennai: { type: Array },
+    mumbai: { type: Array },
+    delhi: { type: Array },
+})
+
 const registrationModel = mongoose.model('registration', registrationSchema);
 const BookingModel = mongoose.model('booking', BookingSchema);
+const HotelModel = mongoose.model('chennai', HotelSchema);
 
 
-module.exports = { registrationModel, BookingModel };
+module.exports = { registrationModel, BookingModel, HotelModel };
